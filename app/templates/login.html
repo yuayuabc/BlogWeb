@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form, render_field, render_form_row %}
+{% block content %}
+
+    <div>
+        <h1>登录</h1>
+        <p>
+            <a href="{{ url_for('register') }}">还没注册?点击一下即刻注册!</a>
+        </p>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            {{ render_field(form.username) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.remember_me) }}
+            {{ render_field(form.submit) }}
+            
+        </form>
+    </div>
+
+
+{% endblock %}

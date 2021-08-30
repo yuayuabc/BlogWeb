@@ -1,0 +1,13 @@
+<table>
+    {% if current_user.user_photo %}
+        <td><img src=" {{ user.user_photo }} " width="256px"></td>
+    {% else %}
+        <td><img src=" {{ user.avatar(128) }} "></td>
+    {% endif %}
+</table>
+<form action="" method="POST" novalidate enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    {{ render_field(form.icon) }}
+    {{ render_field(form.submit) }}
+</form>

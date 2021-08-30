@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <h1>发布新动态</h1>
+    <form action="" method="POST" novalidate enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }}<br>
+            {{ form.post(cols=50,rows=4) }}<br>
+            {% for error in form.post.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor%}
+        </p>
+        <p>
+            {{ form.icon.label }}<br>
+            {{ form.icon(size=32) }}
+            {% for error in form.icon.errors %}
+                <span style="color: red">{{ error }}</span>
+            {% endfor %}
+        </p>
+        
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+{% endblock %}

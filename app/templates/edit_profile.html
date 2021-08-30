@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from 'bootstrap/form.html' import render_form, render_field, render_form_row %}
+{% from 'bootstrap/nav.html' import render_nav_item %}
+{% block content %}
+    <h1>编辑个人信息</h1>
+    <table>
+    {% if user.user_photo %}
+        <td><img src=" {{ user.user_photo }} " width="256px"></td>
+    {% else %}
+        <td><img src=" {{ user.avatar(128) }} "></td>
+    {% endif %}
+    </table>
+    <br>
+    <div class="container" style="font-family: 'Courier New', Courier, monospace">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-secondary">
+                        {{ render_nav_item('uploads', '修改头像', use_li=True,form=form1) }}
+                    </button>
+                    
+                </li>   
+                </ul>
+            </div>  
+        </div>
+    </div>
+    <br>
+
+    <form action="" method="POST" novalidate enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ render_field(form.username) }}
+        {{ render_field(form.about_me) }}
+        {{ render_field(form.submit) }}
+    </form>
+{% endblock %}

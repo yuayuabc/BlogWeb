@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>hello&nbsp;&nbsp;{{current_user.username}}!</h1>
+    
+    <!-- #region 使用for循环展示数据-->
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+{% endblock %}
