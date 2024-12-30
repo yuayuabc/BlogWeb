@@ -2,9 +2,9 @@
 {% block content %}
     <table style="margin:0 auto">
         {% if user.user_photo %}
-            <td><img src=" {{ user.user_photo }} " width="150px"></td>
+            <td><img src="{{ user.user_photo }}" width="150px"></td>
         {% else %}
-            <td><img src=" {{ user.avatar(128) }} "></td>
+            <td><img src="{{ user.defaultBaseAvatar() }}" /></td>
         {% endif %}
     </table>
         
