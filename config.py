@@ -21,7 +21,7 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
     '''获取应用程序中数据库的位置'''
-    SQLALCHEMY_DATABASE_URI = 'postgresql://fight:123456@localhost:5432/fightDB'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:admin123@localhost:5432/postgres'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     '''上传路径配置'''

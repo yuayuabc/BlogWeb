@@ -1,4 +1,4 @@
-#!d:\python_space\python_demo\calmdown\venv\scripts\python.exe
+#!d:\repo\BlogWeb\venv\scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'Mako==1.1.0','console_scripts','mako-render'
 __requires__ = 'Mako==1.1.0'
 import re
