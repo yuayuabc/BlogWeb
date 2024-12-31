@@ -1,0 +1,2 @@
+app/__pycache__/*
+venv/Lib/site-packages/jinja2/__pycache__/*
