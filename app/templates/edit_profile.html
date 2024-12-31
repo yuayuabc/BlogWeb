@@ -5,9 +5,9 @@
     <h1>编辑个人信息</h1>
     <table>
     {% if user.user_photo %}
-        <td><img src="{{ user.user_photo }}" width="256px"></td>
+        <td><img src="{{ user.user_photo }}" width="256px" title="avatar" /></td>
     {% else %}
-        <td><img src="{{ user.defaultBaseAvatar() }}"></td>
+        <td><img src="{{ user.defaultBaseAvatar() }}" title="avatar" /></td>
     {% endif %}
     </table>
     <br>

@@ -3,9 +3,9 @@
 {% block content %}
     <table>
     {% if current_user.user_photo %}
-        <td><img src="{{ user.user_photo }}" width="256px"></td>
+        <td><img src="{{ user.user_photo }}" width="256px" title="avatar" /></td>
     {% else %}
-        <td><img src="{{ user.defaultBaseAvatar() }}"/></td>
+        <td><img src="{{ user.defaultBaseAvatar() }}" title="avatar" /></td>
     {% endif %}
     </table>
     <form action="" method="POST" novalidate enctype="multipart/form-data">
