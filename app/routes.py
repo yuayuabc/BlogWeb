@@ -94,20 +94,20 @@ def before_request():
 @myapp.route('/edit_profile',methods = ['GET', 'POST'])
 @login_required
 def edit_profile():
-    form = EditProfileForm()
-    form1 = UploadForm()
+    editForm = EditProfileForm(original_username = current_user.username)
+    uploadForm = UploadForm()
     user = User.query.filter_by(username = current_user.username).first_or_404()
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
+    if editForm.validate_on_submit():
+        current_user.username = editForm.username.data
+        current_user.about_me = editForm.about_me.data
         db.session.commit()
         flash('您的更改已保存')
         return redirect(url_for('user',username = current_user.username))
           
     elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', user = user, title = '编辑个人信息', form = form, form1 = form1)
+        editForm.username.data = current_user.username
+        editForm.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', user = user, title = '编辑个人信息', editForm = editForm, uploadForm = uploadForm)
 
 
 @myapp.route('/follow/<username>')

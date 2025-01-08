@@ -17,7 +17,7 @@
                 <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
                     <button type="button" class="btn btn-outline-secondary">
-                        {{ render_nav_item('uploads', '修改头像', use_li=True,form=form1) }}
+                        {{ render_nav_item('uploads', '修改头像', use_li=True, form=uploadForm) }}
                     </button>
                     
                 </li>
@@ -28,10 +28,10 @@
     <br>
 
     <form action="" method="POST" novalidate enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
-        {{ form.csrf_token }}
-        {{ render_field(form.username) }}
-        {{ render_field(form.about_me) }}
-        {{ render_field(form.submit) }}
+        {{ editForm.hidden_tag() }}
+        {{ editForm.csrf_token }}
+        {{ render_field(editForm.username) }}
+        {{ render_field(editForm.about_me) }}
+        {{ render_field(editForm.submit) }}
     </form>
 {% endblock %}

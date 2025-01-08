@@ -6,6 +6,7 @@ from flask_wtf.file import FileAllowed, FileRequired
 import os
 import random,string
 from app import photo
+from app import db
 
 
 '''导入邮箱格式确认方法和判断值相等的方法,以及raise ValidationError('') 触发验证错误'''
@@ -15,6 +16,8 @@ from app.models import User
 
 '''pip install Pillow 图片处理库'''
 from PIL import Image
+
+import sqlalchemy as sa
 
 class LoginForm(FlaskForm):
     #DataRequired，当你在当前表格没有输入而直接到下一个表格时会提示你输入
@@ -47,12 +50,20 @@ from wtforms import TextAreaField
 from wtforms.validators import Length
 class EditProfileForm(FlaskForm):
 
-    username = StringField('昵称',validators=[DataRequired(message='昵称不为空')])
+    username = StringField('昵称',validators=[DataRequired(message='昵称不为空'), Length(min=0,max=30)])
     about_me = TextAreaField('签名',validators=[Length(min=0,max=140)])
     submit = SubmitField('保存')
+
+    def __init__(self, original_username, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.original_username = original_username
     
-
-
+    def validate_username(self, username):
+        if username.data != self.original_username:
+            user = User.query.filter_by(username = username.data).first()
+            if user is not None:
+                raise ValidationError('用户名已被占用')
+    
 class PostForm(FlaskForm):
     post = TextAreaField('分享你的想法',validators=[DataRequired(),Length(min=1,max=1000)])
     submit = SubmitField('发布')
