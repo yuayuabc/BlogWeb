@@ -1,4 +1,4 @@
-#!d:\python_space\python_demo\calmdown\venv\scripts\python.exe
+#!d:\repo\BlogWeb\venv\scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'alembic==1.3.1','console_scripts','alembic'
 __requires__ = 'alembic==1.3.1'
 import re

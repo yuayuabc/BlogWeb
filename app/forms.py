@@ -1,8 +1,7 @@
-'''pip install flask-wtf下载flask-wtf扩展'''
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,BooleanField,SubmitField,FileField
-from wtforms.validators import DataRequired,InputRequired
-from flask_wtf.file import FileAllowed,FileRequired
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField
+from wtforms.validators import DataRequired, InputRequired
+from flask_wtf.file import FileAllowed, FileRequired
 
 import os
 import random,string

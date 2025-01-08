@@ -1,12 +1,21 @@
 {% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .user-avatar img{
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <table style="margin:0 auto">
+    <div class="user-avatar">
         {% if user.user_photo %}
-            <td><img src=" {{ user.user_photo }} " width="150px"></td>
+            <img src="{{ user.user_photo }}" width="150px" title="avatar" style="margin: 0 auto;display: block;"/>
         {% else %}
-            <td><img src=" {{ user.avatar(128) }} "></td>
+            <img src="{{ user.defaultBaseAvatar() }}" title="avatar"/>
         {% endif %}
-    </table>
+    </div>
         
     <table style="margin:0 auto">
         <tr valign="top">

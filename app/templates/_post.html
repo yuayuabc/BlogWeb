@@ -2,9 +2,9 @@
     <tr valign="top">
         <a href="{{ url_for('user',username=post.author.username,posts=post) }}">
         {% if post.author.user_photo %}
-            <td><img src=" {{ post.author.user_photo }} " width="36px"></td>
+            <td><img src="{{ post.author.user_photo }}" width="36px" title="avatar" /></td>
         {% else %}
-            <td><img src=" {{ post.author.avatar(36) }} "></td>
+            <td><img src="{{ post.author.defaultBaseAvatar() }}" title="avatar" /></td>
         {% endif %}
         </a>
         

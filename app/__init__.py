@@ -1,28 +1,15 @@
-'''
-模块初始化文件
-用于创建程序的对象，子目录app可作为包被引用
-'''
-
 from flask import Flask
-
-'''
-myapp应用程序实例
-__name__传递给Flask类的变量是Python预定义变量，该变量设置为使用该变量的模块的名称
-'''
-
-'''pip install bootstrap-flask'''
 from flask_bootstrap import Bootstrap
 
 myapp = Flask(__name__)
 
-'''从config模块引用Config类,导入配置文件'''
+
 from config import Config
-'''为myapp应用程序添加配置信息'''
+
 myapp.config.from_object(Config)
 
 from flask_uploads import UploadSet,configure_uploads,patch_request_class
 
-'''配置上传集 photo ,设置上传类型为PNG,png,jpeg'''
 photo = UploadSet('photos',['PNG','png','jpeg','jpg'])
 configure_uploads(myapp,photo)
 patch_request_class(myapp,size=None)
@@ -68,5 +55,17 @@ bootstrap = Bootstrap(myapp)
 '''myapp应用程序从app包中引用routes模块'''
 from app import routes,models
 from app import errors
+import logging
+from logging.handlers import RotatingFileHandler
+import os
 
+if not myapp.debug:
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+    file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240, backupCount=10)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+    file_handler.setLevel(logging.INFO)
+    myapp.logger.addHandler(file_handler)
 
+    myapp.logger.setLevel(logging.INFO)
+    myapp.logger.info('Microblog startup')

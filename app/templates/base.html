@@ -6,13 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- #region 使用if判断完善模板-->
     {% if title %}
         <title>{{title}}-blog</title>
     {% else %}
-    <title>Welcome to blog!</title>
+        <title>Welcome to blog!</title>
     {% endif %}
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     {{ bootstrap.load_css() }}
 </head>
 <body>
@@ -35,24 +34,10 @@
                 </ul>
             </div>
         </nav>
-
-
-    <!-- #region 呈现flash的消息-->
-    <!-- #region 
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-    -->
     
-
     <main class="container">
             {{ render_messages(container=False, dismissible=True) }}
+            {% block head %}{% endblock %}
             {% block content %}{% endblock %}
     </main>
     {{ bootstrap.load_js() }}

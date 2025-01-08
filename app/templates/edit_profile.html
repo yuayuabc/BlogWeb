@@ -5,9 +5,9 @@
     <h1>编辑个人信息</h1>
     <table>
     {% if user.user_photo %}
-        <td><img src=" {{ user.user_photo }} " width="256px"></td>
+        <td><img src="{{ user.user_photo }}" width="256px" title="avatar" /></td>
     {% else %}
-        <td><img src=" {{ user.avatar(128) }} "></td>
+        <td><img src="{{ user.defaultBaseAvatar() }}" title="avatar" /></td>
     {% endif %}
     </table>
     <br>
@@ -20,9 +20,9 @@
                         {{ render_nav_item('uploads', '修改头像', use_li=True,form=form1) }}
                     </button>
                     
-                </li>   
+                </li>
                 </ul>
-            </div>  
+            </div>
         </div>
     </div>
     <br>
