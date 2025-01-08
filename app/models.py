@@ -1,4 +1,3 @@
-'''从app包中导入数据库实例db'''
 from app import db
 
 '''从werkzeug.security模块中导入哈希密码的生成函数generate_password_hash()和检验函数check_password_hash'''
@@ -10,7 +9,6 @@ from flask_login import UserMixin
 from hashlib import md5
 
 from datetime import datetime
-
 
 '''追随者关联表，由user的主码id构成'''
 followers = db.Table('followers',
@@ -28,7 +26,6 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(64),index=True,unique=True)
     email = db.Column(db.String(120),index=True,unique=True)
     password_hash = db.Column(db.String(128))
-
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime,default=datetime.now)
     user_photo = db.Column(db.String(140))
