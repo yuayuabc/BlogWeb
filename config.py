@@ -1,9 +1,7 @@
 import os
 
-'''获取当前路径'''
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-'''创建类Config来存储配置变量'''
 class Config(object):
 
     '''
@@ -29,4 +27,6 @@ class Config(object):
     MAX_CONTENT_LENGTH = 1024*1024*64
 
     FLASK_ADMIN_SWATCH = 'cerulean'
+
+    STATIC_URI = os.path.join(basedir,'static')
     

@@ -16,12 +16,20 @@ from app import photo
 from app.forms import UploadForm
 from datetime import datetime
 from app.forms import EditProfileForm
+from flask import send_from_directory
 
 @myapp.route('/')
 @myapp.route('/index')
 def index():
     posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template('index.html',title = '首页', posts = posts)
+
+# myapp.add_url_rule('/favicon.ico',redirect_to=url_for('static', filename='favicon.ico'))
+
+@myapp.route('/favicon.ico')
+@login_required
+def favicon():
+    return send_from_directory(myapp.config['STATIC_URI'], 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @myapp.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -40,7 +48,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         '''否则，登录URL的next参数是相对路径的参数，即没有域部分的URL，安全，可以直接重定向到该URL，用以实现用户登录成功后的页面跳转问题'''
-        return redirect(next_page)        
+        return redirect(next_page)
     return render_template('login.html',title = '登录', form = form)
 
 from flask_login import logout_user
